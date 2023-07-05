@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>&#128336; Digital Clock</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background-color:rgb(20, 5, 5);
+            color:white;
+        }
+        #main-container{
+            height: 60vh;
+            width: 80vh;
+            border: 1px solid grey;
+            border-radius: 20px;
+            background-color: rgb(103, 96, 96);
+            margin-top: 20vh;
+            margin-left: 62vh;
+        }
+        p{
+            font-size: 7vh;
+            margin-top:4vh;
+            margin-left: 20vh;
+        }
+        #flex-container{
+            display:flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-left:10vh;
+            margin-right:10vh;
+            margin-top: 5vh;
+        }
+        .time{
+            font-size: 5vh;
+            margin:2vh;
+            padding: 1vh;
+        }
+        #date-holder{
+            margin-top: 3vh;
+            font-size: 6vh;
+            margin-left: 26vh;
+        }
+        #b1 {
+            margin-left: 24vh;
+            margin-top: 8vh;
+        }
+        button {
+            height: 5vh;
+            width: 13vh;
+            font-size: 3vh;
+            background-color:rgb(75, 144, 75);
+            border-radius: 2vh;
+        }
+        #b2{
+            margin-left:5vh;
+            margin-top:5vh;
+        }
+        footer{
+            margin-top:17vh;
+            background-color: black;
+            color:white;
+            font-size: 2.3vh;
+        }
+        span{
+            margin-left:88vh;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="main-container">
+        <p>Digital Clock</p>
+        <div id="flex-container">
+            <div class="time" id="hour"> 00 </div>
+            <div class="time"> : </div>
+            <div class="time" id="minutes"> 00 </div>
+            <div class="time"> : </div>
+            <div class="time" id="seconds"> 00 </div>
+        </div>
+        <div id="date-holder">3 / 7 / 2023</div>
+        <button id="b1" onclick="starter()"> &#9654; Start</button>
+        <button id="b2" onclick="stopper()">&#9724; Stop</button>
+    </div>
+    <footer>
+        <span>Created by Ritvik Sharma.</span>
+    </footer>
+
+    <script>
+        let hour=0;
+        let minute=0;
+        let seconds=0;
+        let controller;
+
+        function updater()
+        {
+            var d= new Date();
+            document.getElementById("hour").innerHTML=d.getHours();
+            document.getElementById("minutes").innerHTML=d.getMinutes();
+            document.getElementById("seconds").innerHTML=d.getSeconds();
+            document.getElementById("date-holder").innerHTML=`${d.getDate()} / ${d.getMonth()+1} / ${d.getFullYear()}`;
+        }
+
+        let starter= () => {
+            controller= setInterval(updater,1000);
+        }
+
+        let stopper= () => {
+            clearInterval(controller);
+        }
+
+    </script>
+    
+</body>
+</html>
